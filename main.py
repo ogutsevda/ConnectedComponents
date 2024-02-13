@@ -4,3 +4,9 @@
 # -- If all nodes are visited, the network is connected
 # -- Otherwise find an unvisited node and repeat BFS
 # NOTE: ChatGPT is not allowed but GitHub Copilot is fine :)
+
+def main():
+    pass
+
+if __name__ == '__main__':
+    main()
