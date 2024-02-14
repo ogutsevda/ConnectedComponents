@@ -5,8 +5,19 @@
 # -- Otherwise find an unvisited node and repeat BFS
 # NOTE: ChatGPT is not allowed but GitHub Copilot is fine :)
 
+from graph_ops import GraphOps
+
+
 def main():
-    pass
+    ops = GraphOps(10, 15, "graphs/trial.pkl")
+    graph = ops.generate()
+    ops.visualize(graph)
+    ops.save(graph)
+
+    # TODO 3) write the BFS algorithm
+    # TODO 4) find the connected components
+    # TODO 5) visualize the connected components
+
 
 if __name__ == '__main__':
     main()
