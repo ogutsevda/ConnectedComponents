@@ -13,11 +13,11 @@ def main():
     graph = ops.generate()
     ops.visualize(graph)
     ops.save(graph)
+    comp_dict = ops.BFS(graph)
+    print(comp_dict)
 
-    # TODO 3) write the BFS algorithm
-    # TODO 4) find the connected components
     # TODO 5) visualize the connected components
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
