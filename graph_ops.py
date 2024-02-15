@@ -1,5 +1,6 @@
 import pickle
 import random
+import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -60,4 +61,18 @@ class GraphOps:
             comp_dict[f"Connected Component {comp_count}"] = visited
             visited_nodes.update(visited)
 
+        print(comp_dict)
+
         return comp_dict
+
+    @staticmethod
+    def visualize_components(G, comp_dict):
+        color_map = [0] * len(G.nodes())
+        for key in comp_dict:
+            color = tuple(np.random.rand(3))
+            idx = list(comp_dict[key])
+            for i in idx:
+                color_map[i] = color
+
+        nx.draw(G, node_color=color_map, with_labels=True)
+        plt.show()
