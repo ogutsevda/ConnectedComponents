@@ -2,7 +2,7 @@ from graph_ops import GraphOps
 
 
 def main():
-    ops = GraphOps(20, 15, "graphs/trial.pkl")
+    ops = GraphOps(20, 25, "graphs/trial.pkl")
     graph = ops.generate()
     ops.visualize(graph)
     ops.save(graph)
