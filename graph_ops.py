@@ -24,18 +24,21 @@ class GraphOps:
         return G
 
     @staticmethod
-    def visualize(G):
-        nx.draw(G, with_labels=True)
+    def visualize(G, with_labels=False):
+        plt.figure(figsize=(20, 16))
+        nx.draw(G, with_labels=with_labels, font_size=3, node_size=25)
         plt.show()
 
     def save(self, G):
         with open(self.filename, "wb") as f:
             pickle.dump(G, f)
 
-    def BFS(self, G):
+    @staticmethod
+    def BFS(G):
         all_nodes = set(G.nodes())
         visited_nodes = set()
         comp_dict = dict()
+        comp_count_dict = dict()
 
         comp_count = 0
         while visited_nodes != all_nodes:
@@ -60,14 +63,18 @@ class GraphOps:
 
             comp_count += 1
             comp_dict[f"Connected Component {comp_count}"] = visited_neighbors
+            comp_count_dict[f"Connected Component {comp_count}"] = len(
+                visited_neighbors
+            )
             visited_nodes.update(visited_neighbors)
 
-        print(comp_dict)
+        print(f"There are {comp_count} connected components in the graph!")
+        print(comp_count_dict)
 
-        return comp_dict
+        return comp_dict, comp_count_dict
 
     @staticmethod
-    def visualize_components(G, comp_dict):
+    def visualize_components(G, comp_dict, with_labels=False, save_path=None):
         color_map = [0] * len(G.nodes())
         for key in comp_dict:
             # Very unlikely but the same color can be generated
@@ -77,5 +84,12 @@ class GraphOps:
             for i in idx:
                 color_map[i] = color
 
-        nx.draw(G, node_color=color_map, with_labels=True)
+        plt.figure(figsize=(20, 16))
+        nx.draw(
+            G, node_color=color_map, with_labels=with_labels, font_size=3, node_size=25
+        )
+
+        if save_path:
+            plt.savefig(save_path)
+
         plt.show()
